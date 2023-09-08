@@ -43,6 +43,8 @@ ESP32-D0WDQ6 dual core Tensilica LX6, 240 MHz, supports Secure Boot V2, 4MB SPIF
 
 ### Full screen UI
 
+```display.c```
+
 ```
 CONFIG_GUI_DISPLAY_WINDOW_X1=0
 CONFIG_GUI_DISPLAY_WINDOW_Y1=0
@@ -56,11 +58,15 @@ CONFIG_GUI_DISPLAY_WINDOW_Y2=240
 
 TTGO T4 hw has three ```iot``` buttons (same as M5Stack-Basic/Fire boards) and A button behaves behaves badly when Bluetooth is active.
 
+```input.c```
+
 ```
 #if (!defined(CONFIG_BT_ENABLED)) || (!defined(CONFIG_BOARD_TYPE_TTGO_T4) && !defined(CONFIG_BOARD_TYPE_M5_BLACK_GRAY) && !defined(CONFIG_BOARD_TYPE_M5_FIRE))
 ```
 
 ###  Battery and voltage monitoring
+
+```dashboard.c```
 
 ```
 #elif defined(CONFIG_BOARD_TYPE_M5_BLACK_GRAY) || defined(CONFIG_BOARD_TYPE_M5_FIRE) || defined(CONFIG_BOARD_TYPE_TTGO_T4)
@@ -69,6 +75,9 @@ TTGO T4 hw has three ```iot``` buttons (same as M5Stack-Basic/Fire boards) and A
 ### IP5306 PMU
 
 TTGO T4 hw has IP5306 power controller (same as M5Stack-Basic/Fire boards) :
+
+```power.c```
+
 ```
 #if defined(CONFIG_BOARD_TYPE_JADE) || defined(CONFIG_BOARD_TYPE_JADE_V1_1)                                            \
     || defined(CONFIG_BOARD_TYPE_M5_STICKC_PLUS) || defined(CONFIG_BOARD_TYPE_M5_BLACK_GRAY)                           \
@@ -79,7 +88,7 @@ and:
 
 ```
  #elif defined(CONFIG_BOARD_TYPE_M5_BLACK_GRAY)                                                                         \
-    || defined(CONFIG_BOARD_TYPE_M5_FIRE) || defined(CONFIG_BOARD_TYPE_TTGO_T4) // M5Stack Basic with IP5303 Power PMU
+    || defined(CONFIG_BOARD_TYPE_M5_FIRE) || defined(CONFIG_BOARD_TYPE_TTGO_T4)
 ```
 
 ## Project settings
