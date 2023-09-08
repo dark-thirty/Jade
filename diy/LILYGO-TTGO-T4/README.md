@@ -84,7 +84,7 @@ and:
 
 ## Project settings
 ### Defaults sdkconfig settings:
-[TTGO T4 defaults](./sdkconfig_lilygo_ttgo_t4_.defaults)
+[TTGO T4 defaults](./sdkconfig_lilygo_ttgo_t4.defaults)
 
 #
 
