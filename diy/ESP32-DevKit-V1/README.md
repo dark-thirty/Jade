@@ -8,7 +8,7 @@
 ## DIY Project requirements
 
 
-*1. ESP-Wroom-32 DevKit V1 CP2102 Micro-USB (or CP2102 CH340 Type-C); idVendor=10c4, idProduct=ea60, ESP32-D0WDQ6 dual core Tensilica LX6, 240 MHz, supports Secure Boot V2, 4MB SPIFlash*
+*1. ESP-Wroom-32 DevKit V1 Micro-USB CP2102; VendorID=10c4, ProductID=ea60; ESP32-D0WDQ6 dual core Tensilica LX6 240 MHz, supports Secure Boot V2, 4MB SPIFlash*
 
 *2. LCD 2.8" ILI9341 240x320 5V/3.3V SPI Display*
 
@@ -26,7 +26,7 @@
 
 *and...*
 
-*10. Some basic soldering skills*
+*9. Some basic soldering skills*
 
 #
 
