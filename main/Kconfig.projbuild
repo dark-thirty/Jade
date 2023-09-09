@@ -39,6 +39,12 @@ menu "Blockstream Jade"
             bool "TTGO T-DISPLAY"
         config BOARD_TYPE_DEV
             bool "Dev board"
+        config BOARD_TYPE_DEVKITV1
+            bool "Devkitv1"
+            select DISP_INVERT_COLORS
+        config BOARD_TYPE_TTGO_T4
+            bool "TTGO T4"
+            select DISP_INVERT_COLORS
         config BOARD_TYPE_CUSTOM
             bool "Custom board"
             select CUSTOM_PINS
@@ -46,8 +52,9 @@ menu "Blockstream Jade"
 
     config DISP_INVERT_COLORS
         bool "Invert Display Colors"
-        depends on BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
+        depends on BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
         default n
+        default y if BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
         help
             Invert the colors in the dipslay. Some M5 devices have inverted colors depending on revision.
 
@@ -60,7 +67,7 @@ menu "Blockstream Jade"
 
     config HAS_AXP
         bool "Use the AXP192 power controller"
-        depends on !BOARD_TYPE_M5_FIRE && !BOARD_TYPE_M5_BLACK_GRAY && !BOARD_TYPE_TTGO_TDISPLAY
+        depends on !BOARD_TYPE_M5_FIRE && !BOARD_TYPE_M5_BLACK_GRAY && !BOARD_TYPE_TTGO_TDISPLAY && !BOARD_TYPE_TTGO_T4
         help
             Jade (and some devices) come with the AXP192 to manage power to ESP, display, camera
             default n
@@ -83,7 +90,7 @@ menu "Blockstream Jade"
 
     menu "Input configuration"
         visible if BOARD_TYPE_CUSTOM
-
+         
         config INPUT_WHEEL_A
             int "Wheel A"
             range -1 40
@@ -96,16 +103,18 @@ menu "Blockstream Jade"
             int "BTN A"
             range -1 40
             default 37 if BOARD_TYPE_JADE_V1_1
-            default 39 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_M5_STICKC_PLUS
+            default 39 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_M5_STICKC_PLUS || BOARD_TYPE_TTGO_T4
             default 0 if BOARD_TYPE_TTGO_TDISPLAY
             default 25 if BOARD_TYPE_DEV
+            default 33 if BOARD_TYPE_DEVKITV1
         config INPUT_BTN_B
             int "BTN B"
             range -1 40
             default 39 if BOARD_TYPE_JADE_V1_1
-            default 37 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_M5_STICKC_PLUS
+            default 37 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_M5_STICKC_PLUS || BOARD_TYPE_TTGO_T4
             default 35 if BOARD_TYPE_TTGO_TDISPLAY
             default 32 if BOARD_TYPE_DEV
+            default 25 if BOARD_TYPE_DEVKITV1
         config INPUT_WHEEL_SW
             int "Wheel SW"
             range -1 40
@@ -121,8 +130,9 @@ menu "Blockstream Jade"
             range -1 40
             default 21 if BOARD_TYPE_JADE
             default 33 if BOARD_TYPE_JADE_V1_1
-            default 38 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
+            default 38 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_TTGO_T4
             default 35 if BOARD_TYPE_DEV
+            default 12 if BOARD_TYPE_DEVKITV1
     endmenu
 
     menu "Camera configuration"
@@ -232,7 +242,7 @@ menu "Blockstream Jade"
         # hidden option, used to transform the choice into a single int value
         config DISP_TYPE
             int
-            default 0 if DISP_DRIVER_ILI9341 || BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
+            default 0 if DISP_DRIVER_ILI9341 || BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
             default 1 if DISP_DRIVER_ILI9488
             default 2 if DISP_DRIVER_ST7789V || BOARD_TYPE_DEV || BOARD_TYPE_JADE || BOARD_TYPE_JADE_V1_1 || BOARD_TYPE_TTGO_TDISPLAY || BOARD_TYPE_M5_STICKC_PLUS
             default 3 if DISP_DRIVER_ST7735
@@ -267,37 +277,65 @@ menu "Blockstream Jade"
             default 1 if BOARD_TYPE_JADE || BOARD_TYPE_JADE_V1_1 || BOARD_TYPE_TTGO_TDISPLAY || BOARD_TYPE_M5_STICKC_PLUS
             default 0 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
             default 1 if BOARD_TYPE_DEV
+            default 0 if BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
         config DISP_INVERT_ROTATION2
             int "Invert rotation 2"
             range 0 1
             default 0 if BOARD_TYPE_JADE || BOARD_TYPE_JADE_V1_1 || BOARD_TYPE_TTGO_TDISPLAY || BOARD_TYPE_M5_STICKC_PLUS
             default 1 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
             default 0 if BOARD_TYPE_DEV
+            default 0 if BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
         config DISP_ORIENTATION_DEFAULT
             int "Set orientation default"
             range 0 3
             default 3 if BOARD_TYPE_JADE || BOARD_TYPE_JADE_V1_1 || BOARD_TYPE_TTGO_TDISPLAY || BOARD_TYPE_M5_STICKC_PLUS
-            default 1 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
+            default 1 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_TTGO_T4
             default 0 if BOARD_TYPE_DEV
+            default 0 if BOARD_TYPE_DEVKITV1
         config DISP_RGB_BGR
             int "RGB-BGR"
             default 0
+
+        config GUI_DISPLAY_WINDOW_X1
+            int "Gui Display Window X1 offset"
+            range 0 1000
+            default 0 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
+            default 40
+
+        config GUI_DISPLAY_WINDOW_Y1
+            int "Gui Display Window Y1 offset"
+            range 0 1000
+            default 0 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
+            default 53
+
+        config GUI_DISPLAY_WINDOW_X2
+            int "Gui Display Window X2 offset"
+            range 0 1000
+            default 320 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
+            default 280
+
+        config GUI_DISPLAY_WINDOW_Y2
+            int "Gui Display Window Y2 offset"
+            range 0 1000
+            default 240 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
+            default 188
 
         menu "Pin mapping"
             config DISP_PIN_NUM_MISO
                 int "PIN_NUM_MISO"
                 range -1 40
                 default -1 if BOARD_TYPE_JADE || BOARD_TYPE_JADE_V1_1
-                default 19 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
+                default 19 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1
                 default -1 if BOARD_TYPE_M5_STICKC_PLUS
                 default 25 if BOARD_TYPE_DEV
-                default 2 if BOARD_TYPE_TTGO_TDISPLAY
+                default 2 if BOARD_TYPE_TTGO_TDISPLAY 
+                default 12 if BOARD_TYPE_TTGO_T4
             config DISP_PIN_NUM_MOSI
                 int "PIN_NUM_MOSI"
                 range -1 40
                 default 15 if BOARD_TYPE_JADE
                 default 2 if BOARD_TYPE_JADE_V1_1
-                default 23 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
+                default 23 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
                 default 15 if BOARD_TYPE_M5_STICKC_PLUS
                 default 23 if BOARD_TYPE_DEV
                 default 19 if BOARD_TYPE_TTGO_TDISPLAY
@@ -306,7 +344,7 @@ menu "Blockstream Jade"
                 range -1 40
                 default 14 if BOARD_TYPE_JADE
                 default 12 if BOARD_TYPE_JADE_V1_1
-                default 18 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_TTGO_TDISPLAY
+                default 18 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_TTGO_TDISPLAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
                 default 13 if BOARD_TYPE_M5_STICKC_PLUS
                 default 19 if BOARD_TYPE_DEV
             config DISP_PIN_NUM_CS
@@ -317,6 +355,8 @@ menu "Blockstream Jade"
                 default 14 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
                 default 22 if BOARD_TYPE_DEV
                 default 5 if BOARD_TYPE_TTGO_TDISPLAY || BOARD_TYPE_M5_STICKC_PLUS
+                default 15 if BOARD_TYPE_DEVKITV1
+                default 27 if BOARD_TYPE_TTGO_T4
             config DISP_PIN_NUM_DC
                 int "PIN_NUM_DC"
                 range -1 40
@@ -326,10 +366,13 @@ menu "Blockstream Jade"
                 default 23 if BOARD_TYPE_M5_STICKC_PLUS
                 default 21 if BOARD_TYPE_DEV
                 default 16 if BOARD_TYPE_TTGO_TDISPLAY
+                default 2 if BOARD_TYPE_DEVKITV1
+                default 32 if BOARD_TYPE_TTGO_T4
             config DISP_PIN_NUM_TCS
                 int "PIN_NUM_TCS"
                 range -1 40
                 default -1
+                default 35 if BOARD_TYPE_DEVKITV1
             config DISP_PIN_NUM_RST
                 int "PIN_NUM_RST"
                 range -1 40
@@ -339,11 +382,14 @@ menu "Blockstream Jade"
                 default 18 if BOARD_TYPE_M5_STICKC_PLUS
                 default 18 if BOARD_TYPE_DEV
                 default 23 if BOARD_TYPE_TTGO_TDISPLAY
+                default 4 if BOARD_TYPE_DEVKITV1
+                default 5 if BOARD_TYPE_TTGO_T4
             config DISP_PIN_NUM_BCKL
                 int "PIN_NUM_BCKL"
                 range -1 40
                 default 32 if BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY
-                default 4 if BOARD_TYPE_TTGO_TDISPLAY
+                default 4 if BOARD_TYPE_TTGO_TDISPLAY || BOARD_TYPE_TTGO_T4
+                default -1 if BOARD_TYPE_DEVKITV1
                 default -1
         endmenu
     endmenu
