@@ -4,7 +4,7 @@
 
 #if defined(CONFIG_BOARD_TYPE_JADE) || defined(CONFIG_BOARD_TYPE_JADE_V1_1)                                            \
     || defined(CONFIG_BOARD_TYPE_M5_STICKC_PLUS) || defined(CONFIG_BOARD_TYPE_M5_BLACK_GRAY)                           \
-    || defined(CONFIG_BOARD_TYPE_M5_FIRE)
+    || defined(CONFIG_BOARD_TYPE_M5_FIRE) || defined(CONFIG_BOARD_TYPE_TTGO_T4)
 // Code common to all devices that communicate with a PMU via i2c
 #include <driver/i2c.h>
 
@@ -650,7 +650,7 @@ bool usb_connected(void)
 }
 
 #elif defined(CONFIG_BOARD_TYPE_M5_BLACK_GRAY)                                                                         \
-    || defined(CONFIG_BOARD_TYPE_M5_FIRE) // M5Stack Basic with IP5303 Power PMU
+    || defined(CONFIG_BOARD_TYPE_M5_FIRE) || defined(CONFIG_BOARD_TYPE_TTGO_T4) // M5Stack Basic with IP5303 Power PMU
 #include <esp_sleep.h>
 
 esp_err_t power_init(void)
