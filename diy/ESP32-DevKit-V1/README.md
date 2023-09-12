@@ -22,7 +22,7 @@
 
 *7. 2.54 mm Double-Sided DIY Prototype Board PCB (76 x 66 mm) - 1pc*
 
-*8. Enameled copper wire (0.5 mm)*
+*8. Enameled copper wire (0.4 mm)*
 
 *and...*
 
@@ -74,6 +74,8 @@
 
 ### Enable full screen UI
 
+``` display.c ```
+
 ```
 CONFIG_GUI_DISPLAY_WINDOW_X1=0
 CONFIG_GUI_DISPLAY_WINDOW_Y1=0
@@ -84,11 +86,11 @@ CONFIG_GUI_DISPLAY_WINDOW_Y2=240
 #
 
 ## Project settings
-### Defaults sdkconfig settings:
+### Sdkconfig settings:
 [Jade custom board](./sdkconfig_devkitv1_custom_board.defaults)
 
 #
 
 ### Build project settings:
-[Jade custom board build](./devkitv1_custom_board_Kconfig.projbuild)
+[Jade custom board build](https://github.com/dark-thirty/Jade/blob/jade-diy-devkitv1/main/Kconfig.projbuild)
 
