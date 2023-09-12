@@ -92,10 +92,10 @@ and:
 ```
 
 ## Project settings
-### Defaults sdkconfig settings:
+### Sdkconfig settings:
 [TTGO T4 defaults](./sdkconfig_lilygo_ttgo_t4.defaults)
 
 #
 
 ### Build project settings:
-[TTGO T4 project build](./dysplay_ttgo_t4_Kconfig.projbuild)
+[TTGO T4 project build](https://github.com/dark-thirty/Jade/blob/jade-diy-devkitv1/main/Kconfig.projbuild)
