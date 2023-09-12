@@ -253,11 +253,11 @@ menu "Blockstream Jade"
         config DISP_TFT_WIDTH
             int "TFT display width"
             range 0 640
-            default 240
+            default 320
         config DISP_TFT_HEIGHT
             int "TFT display height"
             range 0 640
-            default 320
+            default 240
         config DISP_COLOR_BITS_24
             int "TFT color bits"
             default 102
