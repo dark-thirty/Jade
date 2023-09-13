@@ -92,6 +92,7 @@ and:
 ```
 
 ## Project settings
+
 ### Sdkconfig settings:
 [TTGO T4 defaults](./sdkconfig_lilygo_ttgo_t4.defaults)
 
@@ -99,3 +100,72 @@ and:
 
 ### Build project settings:
 [TTGO T4 project build](https://github.com/dark-thirty/Jade/blob/jade-diy-devkitv1/main/Kconfig.projbuild)
+
+#
+
+## Build project
+ 
+### Ubuntu - Set up the environment:
+Install Prerequisites:
+To compile using ESP-IDF you will need to get the following packages:
+
+```
+sudo apt-get install git wget flex bison gperf python3 python3-venv cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0
+```
+#
+LILYGO TTGO T4 device is at ```/dev/ttyACM0```. The currently logged user must be a member of ```dialout``` group.
+#
+
+Install esp-idf sdk.
+
+More information is available in the [Espressif official guide](https://docs.espressif.com/projects/esp-idf/en/v5.0.2/esp32/get-started/index.html).
+
+Get the esp-idf sdk and required tools:
+
+```
+cd ~/esp
+git clone -b v5.0.2 --recursive https://github.com/espressif/esp-idf.git
+cd ~/esp/esp-idf && git checkout 5181de8ac5ec5e18f04f634da8ce173b7ef5ab73 && ./install.sh esp32
+```
+
+### Build the firmware
+
+Clone Jade repository:
+
+```
+git clone --recursive https://github.com/Blockstream/Jade.git $HOME/jade
+cd $HOME/jade
+```
+
+### Set up the environmental variables
+
+```
+. $HOME/esp/esp-idf/export.sh
+```
+
+Copy an rename sdkconfig settings:
+
+```
+cp configs/sdkconfig_lilygo_ttgo_t4.defaults sdkconfig.defaults
+idf.py build
+```
+
+If build is successful, flash onto the device:
+
+```
+idf.py -p /dev/ttyACM0 flash monitor
+```
+
+### Run some tests:
+
+Initialize Jade hw, write down your recovery phrase, connect to the Blockstream Green app and finish setup process.
+
+➡️    ***Write down your wallet ID, e.g. ```BXXXXXXA```***
+
+#
+
+Reset device.
+
+Restore wallet with recovery phrase, connect to the Blockstream Green app and finish setup process. 
+If everything is ok, you should have the same wallet ID:   ➡️ ***e.g. ```BXXXXXXA```***
+
