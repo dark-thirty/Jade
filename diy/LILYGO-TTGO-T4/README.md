@@ -155,6 +155,7 @@ If build is successful, flash onto the device:
 ```
 idf.py -p /dev/ttyACM0 flash monitor
 ```
+#
 
 ### Run some tests:
 
@@ -169,3 +170,25 @@ Reset device.
 Restore wallet with recovery phrase, connect to the Blockstream Green app and finish setup process. 
 If everything is ok, you should have the same wallet ID:   ➡️ ***e.g. ```BXXXXXXA```***
 
+### OTA (Over The Air) Updates
+
+The OTA update mechanism allows a device to update itself based on data received while the normal firmware is running.
+This is most important test, because when Secure Boot is enabled it is only way to upgrade Jade firmware.
+
+**⚠️ Before perform OTA Update, TURN OFF Bluetooth ⚠️**
+
+Оnce the device is flashed you just need to build Jade app:
+
+```
+cd $HOME/jade
+
+. $HOME/esp/esp-idf/export.sh
+
+idf.py app
+```
+
+After build is complete, run:
+
+```
+python jade_ota.py --noagent --skipble --serialport /dev/ttyACM0
+```
