@@ -177,7 +177,7 @@ This is most important test, because when Secure Boot is enabled it is only way 
 
 **⚠️ Before perform OTA Update, TURN OFF Bluetooth ⚠️**
 
-Оnce the device is flashed you just need to build Jade app:
+Оnce the device is flashed you just need to build only Jade app:
 
 ```
 cd $HOME/jade
