@@ -99,7 +99,7 @@ and:
 #
 
 ### Build project settings:
-[TTGO T4 project build](https://github.com/dark-thirty/Jade/blob/jade-diy-devkitv1/main/Kconfig.projbuild)
+[TTGO T4 project build](/../jade-diy-devkitv1/main/Kconfig.projbuild)
 
 #
 
