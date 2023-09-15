@@ -97,7 +97,7 @@ static void make_status_bar(void)
     root->parent = NULL;
 
     gui_view_node_t* hsplit;
-    gui_make_hsplit(&hsplit, GUI_SPLIT_ABSOLUTE, 4, 160, 20, 20, 40);
+    gui_make_hsplit(&hsplit, GUI_SPLIT_RELATIVE, 4, 67, 8, 8, 17);
     gui_set_parent(hsplit, root);
 
     gui_view_node_t* black_title_bg;
