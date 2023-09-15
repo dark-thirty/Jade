@@ -92,5 +92,5 @@ CONFIG_GUI_DISPLAY_WINDOW_Y2=240
 #
 
 ### Build project settings:
-[Jade custom board build](https://github.com/dark-thirty/Jade/blob/jade-diy-devkitv1/main/Kconfig.projbuild)
+[Jade custom board build](/../jade-diy-devkitv1/main/Kconfig.projbuild)
 
