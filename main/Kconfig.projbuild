@@ -54,7 +54,6 @@ menu "Blockstream Jade"
         bool "Invert Display Colors"
         depends on BOARD_TYPE_M5_FIRE || BOARD_TYPE_M5_BLACK_GRAY || BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
         default n
-        default y if BOARD_TYPE_DEVKITV1 || BOARD_TYPE_TTGO_T4
         help
             Invert the colors in the dipslay. Some M5 devices have inverted colors depending on revision.
 
@@ -372,7 +371,6 @@ menu "Blockstream Jade"
                 int "PIN_NUM_TCS"
                 range -1 40
                 default -1
-                default 35 if BOARD_TYPE_DEVKITV1
             config DISP_PIN_NUM_RST
                 int "PIN_NUM_RST"
                 range -1 40
